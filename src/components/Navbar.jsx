@@ -4,11 +4,14 @@ import logo from '../assets/Logo1.png'
 
 function Navbar() {
   return (
-    <nav className='bg-primary-700 text-black mt-4 mb-8 mx-12 py-3 rounded-full'>
+    <nav className='bg-primary-700 text-black mt-4 mb-8 mx-6 md:mx-12 py-3 rounded-full'>
         <div className='flex flex-wrap items-center justify-between mx-auto px-4'>
             <div className='font-bold flex items-center space-x-1'>
                 <img src={logo} alt="Logo" className='w-8'/>
-                <span className=''>Flavor Finder</span>
+                <div className='flex flex-col leading-none'>
+                    <span>Flavor</span>
+                    <span>Finder</span>
+                </div>
             </div>
             <div className='hidden md:flex space-x-8 font-bold'>
                 <Link to="/" className='hover:text-white'>Inicio</Link>
