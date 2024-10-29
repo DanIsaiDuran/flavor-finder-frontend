@@ -7,8 +7,9 @@ module.exports = {
         primary: {
           700: '#F48E28',
           900: '#e87a0c'
-        }, // Azul oscuro, puedes cambiarlo
-        secondary: '#B43F3F', // Verde, puedes cambiarlo
+        }, 
+        secondary: '#B43F3F',
+        textBackground: '#F0EBE1'
       },
     },
   },
