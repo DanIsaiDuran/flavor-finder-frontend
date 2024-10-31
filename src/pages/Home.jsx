@@ -1,6 +1,7 @@
 import React from 'react'
 import image from '../assets/estofado-lentejas-chorizo-patatas.avif'
 import homeImage from '../assets/HomeImage.jpg'
+import RecipeCard from '../components/RecipeCard'
 
 function Home() {
   return (
@@ -28,6 +29,18 @@ function Home() {
             <hr class="border-primary-900 border-2" />
           </div>
         </div>
+
+        <div className='mt-12 grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center'>
+          <RecipeCard/>
+          <RecipeCard/>
+          <RecipeCard/>
+          <RecipeCard/>
+          <RecipeCard/>
+          <RecipeCard/>
+          <RecipeCard/>
+          <RecipeCard/>
+        </div>
+        
 
         <div className='mt-12 bg-secondary text-center rounded-3xl h-64 place-content-center'>
             <h2 className='text-textBackground text-center font-bold text-4xl max-w-md mx-auto'>
