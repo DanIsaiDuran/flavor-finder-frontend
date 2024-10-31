@@ -13,13 +13,13 @@ function Navbar() {
                     <span>Finder</span>
                 </div>
             </div>
-            <div className='hidden md:flex space-x-8 font-bold'>
+            <div className='hidden sm:flex space-x-8 font-bold'>
                 <Link to="/" className='hover:text-white'>Inicio</Link>
                 <Link to="/recetas" className='hover:text-white'>Recetas</Link>
                 <Link to="/" className='hover:text-white'>Categorias</Link>
                 <Link to="/" className='hover:text-white'>Nosotros</Link>
             </div>
-            <div className='rounded-full flex-grow-0 font-bold bg-primary-900 px-3 py-2'>
+            <div className='hidden sm:flex rounded-full flex-grow-0 font-bold bg-primary-900 px-3 py-2'>
                 <button className='hover:text-white'>Iniciar sesión</button>
             </div>
         </div>
