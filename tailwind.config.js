@@ -9,7 +9,11 @@ module.exports = {
           900: '#e87a0c'
         }, 
         secondary: '#B43F3F',
-        textBackground: '#F0EBE1'
+        textBackground: '#F0EBE1',
+        cardColor: {
+          700: '#f7ead7',
+          900: '#efd4ad'
+        }
       },
     },
   },
