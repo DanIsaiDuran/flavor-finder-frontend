@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/Logo1.png'
 
 function Navbar() {
@@ -13,13 +13,13 @@ function Navbar() {
                     <span>Finder</span>
                 </div>
             </div>
-            <div className='hidden md:flex space-x-8 font-bold'>
-                <Link to="/" className='hover:text-white'>Inicio</Link>
-                <Link to="/recetas" className='hover:text-white'>Recetas</Link>
-                <Link to="/" className='hover:text-white'>Categorias</Link>
-                <Link to="/" className='hover:text-white'>Nosotros</Link>
+            <div className='hidden sm:flex space-x-8 font-bold'>
+                <NavLink to="/" className={({ isActive }) => (isActive ? 'underline decoration-2 hover:text-white' : 'hover:text-white')}>Inicio</NavLink>
+                <NavLink to="/recetas" className={({ isActive }) => (isActive ? 'underline decoration-2 hover:text-white' : 'hover:text-white')}>Recetas</NavLink>
+                <NavLink to="/recetas" className={({ isActive }) => (isActive ? 'underline decoration-2 hover:text-white' : 'hover:text-white')}>Categorias</NavLink>
+                <NavLink to="/recetas" className={({ isActive }) => (isActive ? 'underline decoration-2 hover:text-white' : 'hover:text-white')}>Nosotros</NavLink>
             </div>
-            <div className='rounded-full flex-grow-0 font-bold bg-primary-900 px-3 py-2'>
+            <div className='hidden sm:flex rounded-full flex-grow-0 font-bold bg-primary-900 px-3 py-2'>
                 <button className='hover:text-white'>Iniciar sesión</button>
             </div>
         </div>
