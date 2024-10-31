@@ -15,8 +15,8 @@ const RecipeCard = ({name, description, preparationTime, difficulty}) => {
     const difficultyValue = difficultyLevels[difficulty];
 
     return (
-        <div className=''>
-            <div className="max-w-sm bg-cardColor-700 border rounded-3xl shadow border-gray-400">
+        <div>
+            <div className="max-w-lg min-h-[505px] bg-cardColor-700 border rounded-3xl shadow border-gray-400">
                 <a href="#">
                     <img className="rounded-t-3xl" src={testImage} alt="" />
                 </a>
@@ -24,7 +24,7 @@ const RecipeCard = ({name, description, preparationTime, difficulty}) => {
                     <a href="#">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{name}</h5>
                     </a>
-                    <p className="mb-3 font-normal text-gray-700">{description}</p>
+                    <p className="mb-3 min-h-[50px] font-normal text-gray-700">{description}</p>
                     <div className='mb-2'>
                         <FontAwesomeIcon icon={faClock} /> {preparationTime}m
                     </div>
