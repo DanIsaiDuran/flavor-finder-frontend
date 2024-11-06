@@ -1,11 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import image from '../assets/estofado-lentejas-chorizo-patatas.avif'
 import homeImage from '../assets/HomeImage.jpg'
 import RecipeHomeGrid from '../components/RecipeHomeGrid'
+import axios from "axios";
 
-function Home() {
+
+function Home({ toggleLoading }) {
+  const [recipes, setRecipes] = useState([]);
+  const [error, setError] = useState(null);
+
+  const getBestRatedRecipes = async () => {
+    toggleLoading(true);
+    try {
+      const response = await axios.get('http://localhost:8080/api/v1/recipe/best-five');
+      setRecipes(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      toggleLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getBestRatedRecipes();
+  }, []);
+
   return (
-    <div className='mx-6 md:mx-12'>
+    <>
+      <div className='mx-6 md:mx-12'>
         <div className=' relative text-center'>
             <img src={homeImage} alt="estofado" className="w-full object-cover rounded-3xl" style={{ height: "35rem" }}/>
             <div className='w-full absolute top-0 left-0 text-center'>
@@ -30,7 +52,7 @@ function Home() {
           </div>
         </div>
 
-        <RecipeHomeGrid/>
+        <RecipeHomeGrid recipes={recipes}/>
         
 
         <div className='mt-12 bg-secondary text-center rounded-3xl h-64 place-content-center'>
@@ -47,7 +69,8 @@ function Home() {
               </button>
             </div>
         </div>
-    </div>
+      </div>
+    </>
   )
 }
 
