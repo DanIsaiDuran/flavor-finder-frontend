@@ -1,23 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import RecipeCard from '../components/RecipeCard'
-import axios from "axios";
 
-const RecipeHomeGrid = () => {
-    const [recipes, setRecipes] = useState([]);
-    const [error, setError] = useState(null);
-
-    const getBestRatedRecipes = async () => {
-        try {
-            const response = await axios.get('http://localhost:8080/api/v1/recipe/best-five');
-            setRecipes(response.data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    useEffect(() => {
-        getBestRatedRecipes();
-    }, []);
+const RecipeHomeGrid = ({recipes}) => {
 
     return (
         <div>
