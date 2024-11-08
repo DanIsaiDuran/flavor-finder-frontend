@@ -10,14 +10,14 @@ function Home({ toggleLoading }) {
   const [error, setError] = useState(null);
 
   const getBestRatedRecipes = async () => {
-    toggleLoading(true);
+    /* toggleLoading(true); */
     try {
       const response = await axios.get('http://localhost:8080/api/v1/recipe/best-five');
       setRecipes(response.data);
     } catch (error) {
       console.log(error);
     } finally {
-      toggleLoading(false);
+      /* toggleLoading(false); */
     }
   }
 
