@@ -12,6 +12,7 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   const toggleLoading = (isLoading) => {
+    console.log("Toggle loading called with:", isLoading);
     setLoading(isLoading);
   };
 
@@ -23,6 +24,7 @@ function App() {
             <Route index element={<Home toggleLoading={toggleLoading} />}/>
             <Route path="recetas" element={<Recipes/>}/>
             <Route path="receta/crear" element={<CreateRecipePage/>}/>
+            <Route path="receta/editar/:recipeId" element={<CreateRecipePage/>}/>
             <Route path='*' element={<PageNotFound/>}/>
           </Route>
         </Routes>
