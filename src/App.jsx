@@ -6,6 +6,7 @@ import Recipes from './pages/Recipes';
 import Layout from './pages/Layout';
 import PageNotFound from './pages/PageNotFound';
 import Loader from './components/Loader';
+import CreateRecipePage from './pages/recipes/CreateRecipePage';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -21,6 +22,7 @@ function App() {
           <Route path='/' element={<Layout/>}>
             <Route index element={<Home toggleLoading={toggleLoading} />}/>
             <Route path="recetas" element={<Recipes/>}/>
+            <Route path="receta/crear" element={<CreateRecipePage/>}/>
             <Route path='*' element={<PageNotFound/>}/>
           </Route>
         </Routes>
