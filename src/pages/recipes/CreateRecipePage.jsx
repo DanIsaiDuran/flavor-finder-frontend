@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const CreateRecipePage = () => {
   
@@ -9,10 +10,15 @@ const CreateRecipePage = () => {
     steps: '',
     ingredients: '',
     difficulty: '',
-    preparetionTime: '',
-    status: '',
+    preparationTime: 0,
+    status: 'ACTIVE',
     tools: ''
   });
+  let navigate = useNavigate();
+
+  const routeChange = () => {
+    navigate('/');
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,14 +34,14 @@ const CreateRecipePage = () => {
         },
       });
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         console.log('Datos enviados exitosamente');
       } else {
         console.error('Error al enviar los datos');
       }
 
     } catch (error) {
-      console.error('Error en la solicitud:', error);
+      console.error('Error en la solicitud:', error.response?.data);
     }
   };
 
@@ -48,26 +54,26 @@ const CreateRecipePage = () => {
             <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="name">
               Nombre
             </label>
-            <input id="name" name='name' type="text" placeholder="Nombre" value={recipe.name} onChange={handleChange} className="appearance-none block w-full bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"  />
+            <input id="name" name='name' type="text" placeholder="Nombre" value={recipe.name} onChange={handleChange} className=" block w-full bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"  />
           </div>
           <div className="w-full sm:w-1/4 px-3">
-            <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="description">
+            <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="difficulty">
               Dificultad
             </label>
-            <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                <option value="">Seleccione una opción</option>
-                <option value="VERY_EASY">Muy facil</option>
-                <option value="EASY">Facil</option>
-                <option value="MEDIUM">Media</option>
-                <option value="HARD">Dificil</option>
-                <option value="VERY_HARD">Muy dificil</option>
-              </select>
+            <select value={recipe.difficulty} onChange={handleChange} id="difficulty" name='difficulty' className=" block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <option value="">Seleccione una opción</option>
+              <option value='VERY_EASY'>Muy facil</option>
+              <option value='EASY'>Facil</option>
+              <option value='MEDIUM'>Media</option>
+              <option value='HARD'>Dificil</option>
+              <option value='VERY_HARD'>Muy dificil</option>
+            </select>
           </div>
-          <div className="w-full sm:w-1/4 px-3">
+          <div className="w-full sm:w-1/4 px-3 ">
             <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="preparationTime">
               Tiempo de preparación
             </label>
-            <input type="text" name="preparationTime" id="preparationTime" value={recipe.preparetionTime} onChange={handleChange} className="appearance-none w-full bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"/>
+            <input type="number" name="preparationTime" id="preparationTime" value={recipe.preparationTime} onChange={handleChange} className="appearance-none w-full bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"/>
           </div>
         </div>
         <div className="flex flex-wrap mb-3">
@@ -98,6 +104,14 @@ const CreateRecipePage = () => {
               Herramientas
             </label>
             <textarea name="tools" id="tools" value={recipe.tools} onChange={handleChange} className="appearance-none w-full bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"></textarea>
+          </div>
+        </div>
+        <div className='flex flex-row-reverse'>
+          <div>
+            <button type='submit' className='bg-primary-900 rounded-full px-3 py-2 mx-3 text-white font-bold'>Enviar</button>
+          </div>
+          <div>
+            <button type='button' onClick={routeChange} className='bg-primary-900 rounded-full px-3 py-2 mx-3 text-white font-bold'>Cancelar</button>
           </div>
         </div>
       </form>
