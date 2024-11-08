@@ -16,7 +16,7 @@ function Navbar() {
             <div className='hidden sm:flex space-x-8 font-bold'>
                 <NavLink to="/" className={({ isActive }) => (isActive ? 'underline decoration-2 hover:text-white' : 'hover:text-white')}>Inicio</NavLink>
                 <NavLink to="/recetas" className={({ isActive }) => (isActive ? 'underline decoration-2 hover:text-white' : 'hover:text-white')}>Recetas</NavLink>
-                <NavLink to="/recetas" className={({ isActive }) => (isActive ? 'underline decoration-2 hover:text-white' : 'hover:text-white')}>Categorias</NavLink>
+                <NavLink to="/receta/crear" className={({ isActive }) => (isActive ? 'underline decoration-2 hover:text-white' : 'hover:text-white')}>Crear receta</NavLink>
                 <NavLink to="/recetas" className={({ isActive }) => (isActive ? 'underline decoration-2 hover:text-white' : 'hover:text-white')}>Nosotros</NavLink>
             </div>
             <div className='hidden sm:flex rounded-full flex-grow-0 font-bold bg-primary-900 px-3 py-2'>
