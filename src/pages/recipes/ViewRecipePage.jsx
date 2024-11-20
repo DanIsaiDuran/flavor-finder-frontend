@@ -18,6 +18,7 @@ const ViewRecipePage = () => {
         HARD: 4,
         VERY_HARD: 5
     };
+    
     const difficultyValue = difficultyLevels[recipe.difficulty];
     const formattedSteps = recipe?.steps ? recipe.steps.replace(/\n/g, '<br>') : "";
     const formattedIngredients = recipe?.ingredients ? recipe.ingredients.split(/\n/g) : [];
@@ -39,9 +40,9 @@ const ViewRecipePage = () => {
 
     return (
         <>
-            <div className='border border-gray-500 rounded-3xl mx-6 md:mx-12 sm:max-w-5xl lg:max-w-full xl:mx-12 p-4'>
+            <div className='rounded-3xl mx-6 md:mx-12 sm:max-w-5xl lg:max-w-full xl:mx-12 p-4 shadow-lg'>
                 <div className='max-w-xl mx-auto mt-3'>
-                    <h1 className='text-center text-5xl uppercase font-bold mb-3'>{recipe.name}</h1>
+                    <h1 className='text-center text-2xl md:text-5xl uppercase font-bold mb-3'>{recipe.name}</h1>
                     <p className='text-center text-gray-800 mb-3'>{recipe.description}</p>
                     <div className='flex justify-center space-x-6'>
                         <div><FontAwesomeIcon icon={faClock} /> {recipe.preparationTime}m</div>
@@ -56,13 +57,14 @@ const ViewRecipePage = () => {
                     </div>
                 </div>
                 <div className='flex justify-center'>
-                    <img src={testImage} alt="estofado" className="w-full max-w-sm md:max-w-7xl rounded-3xl m-6 object-fill" style={{ height: "25rem" }}/>
+                    <img src={testImage} alt="estofado" className="w-full max-w-sm md:max-w-7xl rounded-3xl m-6 object-fill mx-auto" style={{ height: "25rem" }}/>
                 </div>
-                <div className='grid grid-cols-12 gap-4 max-w-7xl mx-auto'>
-                    <div className='col-span-8'>
-                    <div dangerouslySetInnerHTML={{ __html: formattedSteps }}></div>
+                <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 max-w-sm mx-auto md:max-w-7xl'>
+                    <div className='col-span-12 lg:col-span-8 order-2 lg:order-1 '>
+                        <h2 className='text-2xl mb-3'>Preparación</h2>
+                        <div dangerouslySetInnerHTML={{ __html: formattedSteps }}></div>
                     </div>
-                    <div className='col-span-4 rounded-3xl bg-secondary p-4'>
+                    <div className='col-span-12 lg:col-span-4 rounded-3xl bg-secondary p-4 order-1 lg:order-2'>
                         <div className='bg-cardColor-700 rounded-2xl p-4 mb-3'>
                             <h2 className='text-red-700'>Ingredientes</h2>
                             <ul className=' list-disc px-4'>
