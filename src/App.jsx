@@ -7,6 +7,7 @@ import Layout from './pages/Layout';
 import PageNotFound from './pages/PageNotFound';
 import Loader from './components/Loader';
 import CreateRecipePage from './pages/recipes/CreateRecipePage';
+import ViewRecipePage from './pages/recipes/ViewRecipePage';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -25,6 +26,7 @@ function App() {
             <Route path="recetas" element={<Recipes/>}/>
             <Route path="receta/crear" element={<CreateRecipePage/>}/>
             <Route path="receta/editar/:recipeId" element={<CreateRecipePage/>}/>
+            <Route path="receta/:recipeId" element={<ViewRecipePage/>}/>
             <Route path='*' element={<PageNotFound/>}/>
           </Route>
         </Routes>

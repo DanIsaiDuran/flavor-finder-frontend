@@ -3,8 +3,9 @@ import testImage from '../assets/estofado-lentejas-chorizo-patatas.avif'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faDrumstickBite} from '@fortawesome/free-solid-svg-icons'
 import {faClock} from '@fortawesome/free-regular-svg-icons'
+import { Link } from 'react-router-dom';
 
-const RecipeCard = ({name, description, preparationTime, difficulty}) => {
+const RecipeCard = ({name, description, preparationTime, difficulty, id}) => {
     const difficultyLevels = {
         VERY_EASY: 1,
         EASY: 2,
@@ -17,13 +18,9 @@ const RecipeCard = ({name, description, preparationTime, difficulty}) => {
     return (
         <div>
             <div className="max-w-lg min-h-[505px] bg-cardColor-700 border rounded-3xl shadow border-gray-400">
-                <a href="#">
-                    <img className="rounded-t-3xl" src={testImage} alt="" />
-                </a>
+                <img className="rounded-t-3xl" src={testImage} alt="" />
                 <div className="p-5">
-                    <a href="#">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{name}</h5>
-                    </a>
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{name}</h5>
                     <p className="mb-3 min-h-[50px] font-normal text-gray-700">{description}</p>
                     <div className='mb-2'>
                         <FontAwesomeIcon icon={faClock} /> {preparationTime}m
@@ -41,9 +38,9 @@ const RecipeCard = ({name, description, preparationTime, difficulty}) => {
                                 }
                             </div>
                         </div>
-                        <a href="#" className="inline-flex items-center px-4 py-1 text-sm font-medium text-center text-gray-900 bg-cardColor-700 rounded-full border border-gray-800 hover:bg-cardColor-900 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                            VER RECETA
-                        </a>
+                        <Link to={`/receta/${id}`} className="inline-flex items-center px-4 py-1 text-sm font-medium text-center text-gray-900 bg-cardColor-700 rounded-full border border-gray-800 hover:bg-cardColor-900 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            Ver Receta
+                        </Link>
                     </div>
                     
                 </div>
