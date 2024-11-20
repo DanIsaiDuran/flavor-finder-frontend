@@ -13,6 +13,7 @@ const RecipeHomeGrid = ({recipes}) => {
                         description={recipe.description} 
                         preparationTime={recipe.preparationTime}
                         difficulty={recipe.difficulty}
+                        id={recipe.id}
                         />
                     ))
                 }
