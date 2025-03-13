@@ -21,7 +21,7 @@ const RecipeCard = ({name, description, preparationTime, difficulty, id}) => {
                 <img className="rounded-t-3xl" src={testImage} alt="" />
                 <div className="p-5">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{name}</h5>
-                    <p className="mb-3 min-h-[50px] font-normal text-gray-700">{description}</p>
+                    <p className="mb-3 min-h-[70px] font-normal text-gray-700">{description}</p>
                     <div className='mb-2'>
                         <FontAwesomeIcon icon={faClock} /> {preparationTime}m
                     </div>
