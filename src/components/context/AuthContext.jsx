@@ -32,11 +32,13 @@ export const AuthProvider = ({ children }) => {
   // Register function
   const register = async (credentials) => {
     try {
-      const { data } = await API.post("/auth/register", credentials);
+      const { data } = await API.post("/auth/sign-up", credentials);
       localStorage.setItem("user", JSON.stringify(data)); // Store user data
       setUser(data);
+      return {success: true, error: null};
     } catch (error) {
       console.error("Registration failed:", error.response?.data || error.message);
+      return {success: false, error: Object.values(error.response.data).join(", ") || error.message};
     }
   };
 
