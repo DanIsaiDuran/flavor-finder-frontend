@@ -9,6 +9,7 @@ import Loader from './components/Loader';
 import CreateRecipePage from './pages/recipes/CreateRecipePage';
 import ViewRecipePage from './pages/recipes/ViewRecipePage';
 import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -31,6 +32,7 @@ function App() {
             <Route path='*' element={<PageNotFound/>}/>
           </Route>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
         </Routes>
       }
     </>
