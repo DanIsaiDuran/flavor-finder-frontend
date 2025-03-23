@@ -6,14 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import Navbar from './components/Navbar';
 import { BrowserRouter } from 'react-router-dom';
 import Layout from './pages/Layout';
+import { AuthProvider } from './components/context/AuthContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>
 );
 
