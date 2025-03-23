@@ -3,18 +3,21 @@ import { AuthContext } from '../components/context/AuthContext'
 
 function Recipes() {
 
-  const { user } = useContext(AuthContext);
+  const { user, isAdmin } = useContext(AuthContext);
 
   return (
     <>
         <h1>Hello world</h1>
+        <p>{isAdmin}</p>
         {user ? (
           <p>{user.username}</p>
+          
         ) : 
         (
           <p>asd</p>
-        )}
-        
+        )} 
+
+        {isAdmin && <p>Si es admin</p> }
     </>
   )
 }
