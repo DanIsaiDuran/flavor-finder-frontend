@@ -12,29 +12,21 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 
 function App() {
-  const [loading, setLoading] = useState(false);
-
-  const toggleLoading = (isLoading) => {
-    console.log("Toggle loading called with:", isLoading);
-    setLoading(isLoading);
-  };
 
   return (
     <>
-      {loading ? <Loader /> :
-        <Routes>
-          <Route path='/' element={<Layout/>}>
-            <Route index element={<Home toggleLoading={toggleLoading} />}/>
-            <Route path="recetas" element={<Recipes/>}/>
-            <Route path="receta/crear" element={<CreateRecipePage/>}/>
-            <Route path="receta/editar/:recipeId" element={<CreateRecipePage/>}/>
-            <Route path="receta/:recipeId" element={<ViewRecipePage/>}/>
-            <Route path='*' element={<PageNotFound/>}/>
-          </Route>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/register' element={<Register/>}/>
-        </Routes>
-      }
+      <Routes>
+        <Route path='/' element={<Layout/>}>
+          <Route index element={<Home/>}/>
+          <Route path="recetas" element={<Recipes/>}/>
+          <Route path="receta/crear" element={<CreateRecipePage/>}/>
+          <Route path="receta/editar/:recipeId" element={<CreateRecipePage/>}/>
+          <Route path="receta/:recipeId" element={<ViewRecipePage/>}/>
+          <Route path='*' element={<PageNotFound/>}/>
+        </Route>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
+      </Routes>
     </>
   );
 }

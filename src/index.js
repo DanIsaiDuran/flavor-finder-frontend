@@ -7,15 +7,20 @@ import Navbar from './components/Navbar';
 import { BrowserRouter } from 'react-router-dom';
 import Layout from './pages/Layout';
 import { AuthProvider } from './components/context/AuthContext';
+import GlobalLoader from './components/GlobalLoader';
+import { LoaderProvider } from './components/context/LoaderContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <LoaderProvider>
+        <BrowserRouter>
+          <GlobalLoader/>
+          <App />
+        </BrowserRouter>
+      </LoaderProvider>
     </AuthProvider>
   </React.StrictMode>
 );

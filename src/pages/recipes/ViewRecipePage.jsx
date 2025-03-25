@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faDrumstickBite, faCircle} from '@fortawesome/free-solid-svg-icons'
 import {faClock} from '@fortawesome/free-regular-svg-icons'
 import testImage from '../../assets/estofado-lentejas-chorizo-patatas.avif'
+import { LoaderContext } from '../../components/context/LoaderContext';
 
 const ViewRecipePage = () => {
 
     const [recipe, setRecipe] = useState({});
     const {recipeId} = useParams();
+    const {toogleLoading} = useContext(LoaderContext);
 
     const difficultyLevels = {
         VERY_EASY: 1,
@@ -25,6 +27,7 @@ const ViewRecipePage = () => {
     const formattedTools = recipe?.tools ? recipe.tools.split(/\n/g) : [];
 
     useEffect(() => {
+        toogleLoading(true);
         if(recipeId) {
             axios.get(`http://localhost:8080/api/v1/recipe/${recipeId}` , {
                 validateStatus: (status) => status >= 200 && status <= 302,
@@ -36,6 +39,7 @@ const ViewRecipePage = () => {
             console.error('Error al cargar la receta', error);
             });
         }
+        toogleLoading(false);
     }, [recipeId]);
 
     return (
