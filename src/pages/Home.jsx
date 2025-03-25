@@ -1,23 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import image from '../assets/estofado-lentejas-chorizo-patatas.avif'
 import homeImage from '../assets/HomeImage.jpg'
 import RecipeHomeGrid from '../components/RecipeHomeGrid'
 import axios from "axios";
+import { LoaderContext } from '../components/context/LoaderContext';
 
 
-function Home({ toggleLoading }) {
+function Home() {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
+  const {toogleLoading} = useContext(LoaderContext);
 
   const getBestRatedRecipes = async () => {
     /* toggleLoading(true); */
     try {
+      toogleLoading(true);
       const response = await axios.get('http://localhost:8080/api/v1/recipe/best-five');
       setRecipes(response.data);
     } catch (error) {
       console.log(error);
     } finally {
-      /* toggleLoading(false); */
+      toogleLoading(false);
     }
   }
 
