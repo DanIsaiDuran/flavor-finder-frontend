@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from "axios";
 import { useNavigate, useParams } from 'react-router-dom';
 import recipeFormValidation from '../../services/recipeFormValidation';
+import { AuthContext } from '../../components/context/AuthContext';
 
 const CreateRecipePage = () => {
   
@@ -20,6 +21,8 @@ const CreateRecipePage = () => {
 
   const { recipeId } = useParams();
   const navigate = useNavigate();
+
+  const {user} = useContext(AuthContext);
 
   useEffect(() => {
     if(recipeId) {
@@ -48,14 +51,17 @@ const CreateRecipePage = () => {
       return;
     }
     try {
-      const url = recipeId ? `http://localhost:8080/api/v1/recipe/update/${recipeId}` : 'http://localhost:8080/api/v1/recipe/1';
+      const url = recipeId ? `http://localhost:8080/api/v1/recipe/update/${recipeId}` : `http://localhost:8080/api/v1/recipe`;
       const method = recipeId ? 'put' : 'post';
 
       const response = await axios({
         method: method,
         url: url,
         data: recipe,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.jwt}`
+        }
       });
 
       if (response.status === 201 || response.status === 200) {
