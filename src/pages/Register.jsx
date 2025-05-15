@@ -5,6 +5,8 @@ import {faAt} from '@fortawesome/free-solid-svg-icons'
 import { AuthContext } from '../components/context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { emailValidation } from '../services/emailValidation'
+import ModalPopup from '../components/ModalPopup'
+
 
 const Register = () => {
 
@@ -15,12 +17,15 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState();
   const {register} = useContext(AuthContext);
   const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
+  const [duplicateMessage, setDuplicateMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors({});
     const newErrors = emailValidation(credentials);
     setErrors({...errors, ...newErrors});
-    if(Object.keys(newErrors).length > 0 || Object.keys(errors).length > 0) {
+    if(Object.keys(newErrors).length > 0) {
       return; 
     }
     const response = await register(credentials);
@@ -28,6 +33,10 @@ const Register = () => {
       navigate("/");
     }
     else {
+      if (response.error){
+        setDuplicateMessage(response.error);
+        setOpenModal(true)
+      }
       setErrors({...errors, authError: "No se pudo crear el usuario"});
     }
   }
@@ -112,6 +121,10 @@ const Register = () => {
                 {errors.authError && <p className="text-red-500 text-sm mt-1">{errors.authError}</p>} 
             </div>
         </div>
+
+        {/* Popup Modal */}
+
+        <ModalPopup openModal={openModal} setOpenModal={setOpenModal} bodyMessage={duplicateMessage}/>
     </>
   )
 }
