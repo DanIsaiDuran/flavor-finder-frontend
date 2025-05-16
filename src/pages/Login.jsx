@@ -3,12 +3,16 @@ import React, { useContext, useState } from 'react'
 import logosvg from '../assets/Icono Blanco.svg'
 import { AuthContext } from '../components/context/AuthContext'
 import { useNavigate } from 'react-router-dom';
+import ModalPopup from '../components/ModalPopup';
 
 function Login() {
     const {login} = useContext(AuthContext);
     const [credentials, setCredential] = useState({username: "", password: ""});
     const navigate = useNavigate();
 
+    const [openModal, setOpenModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
+    
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -19,10 +23,12 @@ function Login() {
         e.preventDefault();
         const success = await login(credentials);
         if(success) navigate("/")
+        setOpenModal(true);
+        setModalMessage("Datos no validos");
     };
 
   return (
-    <div>
+    <>
         <div className="bg-primary-400 h-screen overflow-hidden flex items-center justify-center">
             <div className="bg-cardColor-900 lg:w-6/12 md:7/12 w-8/12 shadow-3xl rounded-xl shadow-md shadow-gray-700">
                 <div className="bg-secondary shadow-md shadow-gray-600 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full p-4 md:p-8">
@@ -48,7 +54,11 @@ function Login() {
                 </form>
             </div>
         </div>
-    </div>
+
+        {/* Modal */}
+
+        <ModalPopup openModal={openModal} setOpenModal={setOpenModal} bodyMessage={modalMessage} />
+    </>
   )
 }
 
