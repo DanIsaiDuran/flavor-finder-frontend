@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
       const { data } = await API.post("/auth/login", credentials);
       localStorage.setItem("user", JSON.stringify(data)); // Store user data
       setUser(data);
-      const decoded = jwtDecode(user.jwt);
+      const decoded = jwtDecode(data.jwt);
       if (decoded?.authorities === "ROLE_ADMIN") {
         setIsAdmin(true);
       }
@@ -60,6 +60,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("user");
     setUser(null);
+    window.location.href = '/';
   };
 
   return (
