@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from 'react-router-dom';
 import recipeFormValidation from '../../services/recipeFormValidation';
 import { AuthContext } from '../../components/context/AuthContext';
+import ModalPopup from '../../components/ModalPopup';
 
 const CreateRecipePage = () => {
   
@@ -23,6 +24,9 @@ const CreateRecipePage = () => {
   const navigate = useNavigate();
 
   const {user} = useContext(AuthContext);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   useEffect(() => {
     if(recipeId) {
@@ -68,11 +72,13 @@ const CreateRecipePage = () => {
         console.log('Datos enviados exitosamente');
         navigate('/');
       } else {
-        console.error('Error al enviar los datos');
+        setOpenModal(true);
+        setModalMessage('Error al enviar los datos');
       }
 
     } catch (error) {
-      console.error('Error en la solicitud:', error);
+      setOpenModal(true);
+      setModalMessage(error.response.data);
     }
   };
 
@@ -154,6 +160,10 @@ const CreateRecipePage = () => {
         </div>
       </form>
       </div>
+
+      {/* Modal */}
+
+      <ModalPopup openModal={openModal} setOpenModal={setOpenModal} bodyMessage={modalMessage}/>
     </>
   )
 }
