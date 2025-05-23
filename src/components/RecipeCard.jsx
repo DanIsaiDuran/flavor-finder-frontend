@@ -17,16 +17,16 @@ const RecipeCard = ({name, description, preparationTime, difficulty, id}) => {
 
     return (
         <div>
-            <div className="max-w-lg min-h-[505px] bg-cardColor-700 border rounded-3xl shadow border-gray-400">
-                <img className="rounded-t-3xl" src={testImage} alt="" />
-                <div className="p-5">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{name}</h5>
-                    <p className="mb-3 min-h-[70px] font-normal text-gray-700">{description}</p>
-                    <div className='mb-2'>
+            <div className="w-[440px] h-[470px] lg:flex lg:flex-row lg:w-[500px] lg:h-[320px] xl:w-[620px] xl:h-[270px] bg-cardColor-700 border rounded-3xl shadow border-gray-400 overflow-hidden">
+                <img className="w-full h-[200px] object-cover lg:w-[250px] lg:h-auto" src={testImage} alt="" />
+                <div className="p-5 flex flex-col justify-between flex-1">
+                    <h5 className=" h-[70px] mb-1 lg:mb-2 text-2xl font-bold tracking-tight text-gray-900">{name}</h5>
+                    <p className="mb-3 h-[65px] font-normal text-sm text-gray-700">{description}</p>
+                    <div className='py-2'>
                         <FontAwesomeIcon icon={faClock} /> {preparationTime}m
                     </div>
                     <div className='flex items-center justify-between'>
-                        <div className=' '>
+                        <div>
                             <div className='text-sm'>
                                 DIFICULTAD: 
                             </div>
@@ -38,6 +38,7 @@ const RecipeCard = ({name, description, preparationTime, difficulty, id}) => {
                                 }
                             </div>
                         </div>
+                       
                         <Link to={`/receta/${id}`} className="inline-flex items-center px-4 py-1 text-sm font-medium text-center text-gray-900 bg-cardColor-700 rounded-full border border-gray-800 hover:bg-cardColor-900 focus:ring-4 focus:outline-none focus:ring-blue-300">
                             Ver Receta
                         </Link>
