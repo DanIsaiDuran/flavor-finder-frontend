@@ -17,11 +17,11 @@ const RecipeCard = ({name, description, preparationTime, difficulty, id}) => {
 
     return (
         <div>
-            <div className="w-[440px] md:w-[640px] lg:flex lg:flex-row lg:w-[520px] lg:h-[320px] xl:w-[620px] xl:h-[270px] bg-cardColor-700 border rounded-3xl shadow border-gray-400 overflow-hidden">
+            <div className="w-[440px] h-[470px] lg:flex lg:flex-row lg:w-[500px] lg:h-[320px] xl:w-[620px] xl:h-[270px] bg-cardColor-700 border rounded-3xl shadow border-gray-400 overflow-hidden">
                 <img className="w-full h-[200px] object-cover lg:w-[250px] lg:h-auto" src={testImage} alt="" />
                 <div className="p-5 flex flex-col justify-between flex-1">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{name}</h5>
-                    <p className="mb-3 min-h-[50px] font-normal text-sm text-gray-700">{description}</p>
+                    <h5 className=" h-[70px] mb-1 lg:mb-2 text-2xl font-bold tracking-tight text-gray-900">{name}</h5>
+                    <p className="mb-3 h-[65px] font-normal text-sm text-gray-700">{description}</p>
                     <div className='py-2'>
                         <FontAwesomeIcon icon={faClock} /> {preparationTime}m
                     </div>
