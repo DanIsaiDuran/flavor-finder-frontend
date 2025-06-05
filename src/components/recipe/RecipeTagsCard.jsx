@@ -18,7 +18,7 @@ const RecipeTagsCard = ({name, preparationTime, difficulty, id}) => {
     return (
         <>
             <Link to={`/receta/${id}`}>
-                <div className="max-w-[300px] rounded-xl overflow-hidden shadow-lg transition duration-500 hover:scale-105">
+                <div className="max-w-[250px] rounded-xl overflow-hidden shadow-lg transition duration-500 hover:scale-105">
                     <div className="relative">
                         <img className="w-full" src={testImage} alt="imagen de receta"/>
                         <span className="font-bold text-white text-lg mb-2 absolute bottom-4 left-1 bg-gray-800 bg-opacity-5"> {name} </span>
@@ -29,7 +29,7 @@ const RecipeTagsCard = ({name, preparationTime, difficulty, id}) => {
                             <div className='text-sm'>
                                 Dificultad: 
                             </div>
-                            <div className='text-lg space-x-1'>
+                            <div className='text-md space-x-1'>
                                 {
                                     [...Array(difficultyValue)].map((_, index) => (
                                         <FontAwesomeIcon icon={faDrumstickBite} key={index}/>
