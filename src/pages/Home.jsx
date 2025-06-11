@@ -36,7 +36,7 @@ function Home() {
             <div className='w-full absolute top-0 left-0 text-center'>
               <h2 className='text-4xl mt-32 md:text-7xl text-textBackground font-bold'>EXCELENCIA</h2>
               <h2 className='text-4xl md:text-7xl text-textBackground font-bold'>CULINARIA</h2>
-              <p className='text-textBackground text-balance text-md mt-4 max-w-md mx-auto bg-gray-800 bg-opacity-15'>
+              <p className='text-textBackground text-balance text-md mt-4 max-w-md mx-auto'>
                 Explora un mundo de sabores, descubre recetas 
                 caseras y deja que el aroma de nuestra pasión por la cocina llene tu cocina
               </p>
