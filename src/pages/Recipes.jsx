@@ -13,6 +13,7 @@ function Recipes() {
   const {toogleLoading} = useContext(LoaderContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [search, setSearch] = useState();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -22,12 +23,14 @@ function Recipes() {
       const difficulty = searchParams.get("difficulty");
       const maxPreparationTime = searchParams.get("maxPreparationTime");
       const page = searchParams.get("page");
+      const search = searchParams.get("word");
 
       // Fetch with filters
       const query = new URLSearchParams();
       if (difficulty) query.append("difficulty", difficulty);
       if (maxPreparationTime) query.append("maxPreparationTime", maxPreparationTime);
       if(page) query.append("page", page-1);
+      if(search) query.append("word", search);
       const response = await axios.get(`http://localhost:8080/api/v1/recipe?${query.toString()}`);
       console.log(response.data)
       setTotalPages(response.data.totalPages);
@@ -50,17 +53,35 @@ function Recipes() {
     setSearchParams(searchParams);
   }
 
+  /* Handle page change */
   const onPageChange = (page) => {
     setCurrentPage(page);
     searchParams.set('page', page);
     setSearchParams(searchParams);
   }
 
+  /* When clear filters button is pressed, the filters are cleared */
   const handleCleanFilters = () => {
     setSearchParams({"page": 1});
     setCurrentPage(1);
   }
 
+  /* UseEffect to handle search filter */
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if(search){
+        searchParams.set('word', search);
+      }
+      else{
+        searchParams.delete('word');
+      }
+      setSearchParams(searchParams);
+    }, 700);
+
+    return () => clearTimeout(handler);
+  }, [search]);
+
+  /* When searchParams are updated makes a new fetch to the api */
   useEffect (() => {
     getRecipes();
   }, [searchParams]);
@@ -72,7 +93,7 @@ function Recipes() {
         {/* Filters*/}
         <div className='grid grid-cols-12 gap-4'>
           <div className='col-span-12 md:col-span-4'>
-            <input type="text" id="search"  className="w-full bg-secondary text-white text-md rounded-lg p-3 placeholder-white" placeholder='Buscar receta'></input>
+            <input type="text" id="search" onChange={(e) => setSearch(e.target.value)} value={searchParams.get("word") || ""}  className="w-full bg-secondary text-white text-md rounded-lg p-3 placeholder-white" placeholder='Buscar receta'></input>
           </div>
           
           <div className='col-span-12 md:col-span-2'>
